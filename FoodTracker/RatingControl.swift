@@ -14,6 +14,7 @@ class RatingControl: UIView {
     
     var rating = 0 {
         didSet {
+            //trigger a layout update every time the rating changes
             setNeedsLayout()
         }
     }
@@ -32,6 +33,8 @@ class RatingControl: UIView {
             buttonFrame.origin.x = CGFloat(index * (buttonSize + spacing))
             button.frame = buttonFrame
         }
+        
+        updateButtonSelectionStates()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,8 +72,23 @@ class RatingControl: UIView {
   
     //MARK: button action
     func ratingButtonPressed(button: UIButton) {
-        print("button pressed :)")
+        rating = ratingButtons.indexOf(button)! + 1
+        //..print("button pressed :)")
         
+        updateButtonSelectionStates()
+        
+    }
+    
+    func updateButtonSelectionStates() {
+        
+        for(index,button) in ratingButtons.enumerate() {
+            
+            //if the index of a button is less than the rating, that button should be selected
+            button.selected = index < rating
+        }
     }
 
 }
+
+
+
