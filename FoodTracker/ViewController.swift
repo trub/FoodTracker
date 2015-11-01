@@ -50,6 +50,18 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         //this code animates the dismissal of the image picker controller
     }
     
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        //the info dictionary contains multiple representations of the image, and this user the original 
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        //set photoImageView to display the selected image
+        photoImageView.image = selectedImage
+        
+        //dismiss the picker
+        dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
     
     //MARK: actions
 
