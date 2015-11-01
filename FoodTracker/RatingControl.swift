@@ -16,12 +16,20 @@ class RatingControl: UIView {
         
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.backgroundColor = UIColor.redColor()
+        //attaches action ratingButtonTapped: to the button object, which will be triggered whenever the .TouchDown event occurs
+        button.addTarget(self, action: "ratingButtonPressed:", forControlEvents: .TouchDown)
         addSubview(button)
+        
     }
     
     override func intrinsicContentSize() -> CGSize {
         return  CGSize(width: 240, height: 44)
     }
   
+    //MARK: button action
+    func ratingButtonPressed(button: UIButton) {
+        print("button pressed")
+        
+    }
 
 }
