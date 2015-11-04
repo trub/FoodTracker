@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Meal View Controller-->
+        <!--New Meal-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MealViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -58,10 +58,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="gAJ-mB-dKp" secondAttribute="trailing" id="DJq-Vg-SIG"/>
-                            <constraint firstItem="gAJ-mB-dKp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="bKm-LK-pQN"/>
+                            <constraint firstItem="gAJ-mB-dKp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="bKm-LK-pQN"/>
                             <constraint firstItem="gAJ-mB-dKp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="gx5-Ip-8O5"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="New Meal" id="DKX-fB-ZY0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="0TB-2I-hgR"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bdA-LE-5Xk"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1000"/>
                     <connections>
@@ -77,7 +81,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1092" y="337"/>
+            <point key="canvasLocation" x="1904" y="337"/>
         </scene>
         <!--Your Meals-->
         <scene sceneID="B4s-b5-2d2">
@@ -131,7 +135,7 @@
                     <navigationItem key="navigationItem" title="Your Meals" id="Lj0-NU-PvE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7K7-kR-F39">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="rS4-rY-2jD"/>
+                                <segue destination="fqS-l2-M2q" kind="presentation" identifier="AddItem" id="rS4-rY-2jD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -158,6 +162,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jue-lc-erR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-424" y="137"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tK7-pX-pdg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fqS-l2-M2q" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C4F-KO-bl6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ofz-uX-xji"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ej8-ZO-8nq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1092" y="337"/>
         </scene>
     </scenes>
     <resources>
