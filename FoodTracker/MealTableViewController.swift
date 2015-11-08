@@ -12,7 +12,7 @@ class MealTableViewController: UITableViewController {
     
     //MARK: properties
     
-    var meals = [meal]()
+    var meals = [Meal]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +26,13 @@ class MealTableViewController: UITableViewController {
         
         
         let photo1 = UIImage(named: "meal1")!
-        let meal1 = meal(name: "caprese salad", photo: photo1, rating: 4)!
+        let meal1 = Meal(name: "caprese salad", photo: photo1, rating: 4)!
         
         let photo2 = UIImage(named: "meal2")!
-        let meal2 = meal(name: "chicken and potatoes", photo: photo2, rating: 5)!
+        let meal2 = Meal(name: "chicken and potatoes", photo: photo2, rating: 5)!
         
         let photo3 = UIImage(named: "meal3")!
-        let meal3 = meal(name: "pasta with meatballs", photo: photo3, rating: 3)!
+        let meal3 = Meal(name: "pasta with meatballs", photo: photo3, rating: 3)!
         
         meals += [meal1, meal2, meal3]
         
@@ -68,7 +68,7 @@ class MealTableViewController: UITableViewController {
         cell.photoImageView.image = meal.photo
         cell.ratingControl.rating = meal.rating
         
-        
+        print("build meal cell")
         return cell
     }
 
@@ -117,5 +117,19 @@ class MealTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        
+        if let sourceViewController = sender.sourceViewController as? MealViewController, meal = sourceViewController.meal  {
+            
+            //add a new meal
+            let newIndexPath = NSIndexPath(forItem: meals.count, inSection: 0)
+            meals.append(meal)
+            print("add meal cell to bottom of table view controller")
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+
+            
+        }
+    }
 
 }

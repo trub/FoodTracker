@@ -88,11 +88,9 @@
 			children = (
 				E1E349151BE5288B00FC4E5D /* AppDelegate.swift */,
 				E1E349171BE5288B00FC4E5D /* MealViewController.swift */,
+				E1F9F55B1BEED8C900001261 /* mealTableView */,
+				E1F9F55A1BEED8B000001261 /* mealAttributes */,
 				E1E349191BE5288B00FC4E5D /* Main.storyboard */,
-				E177643B1BE71146006E69C3 /* MealTableViewController.swift */,
-				E17764391BE7083B006E69C3 /* MealTableViewCell.swift */,
-				E17764361BE69F23006E69C3 /* Meal.swift */,
-				E17764321BE5AC48006E69C3 /* RatingControl.swift */,
 				E1E3491C1BE5288B00FC4E5D /* Assets.xcassets */,
 				E1E3491E1BE5288B00FC4E5D /* LaunchScreen.storyboard */,
 				E1E349211BE5288B00FC4E5D /* Info.plist */,
@@ -107,6 +105,24 @@
 				E1E3492C1BE5288B00FC4E5D /* Info.plist */,
 			);
 			path = FoodTrackerTests;
+			sourceTree = "<group>";
+		};
+		E1F9F55A1BEED8B000001261 /* mealAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				E17764361BE69F23006E69C3 /* Meal.swift */,
+				E17764321BE5AC48006E69C3 /* RatingControl.swift */,
+			);
+			name = mealAttributes;
+			sourceTree = "<group>";
+		};
+		E1F9F55B1BEED8C900001261 /* mealTableView */ = {
+			isa = PBXGroup;
+			children = (
+				E17764391BE7083B006E69C3 /* MealTableViewCell.swift */,
+				E177643B1BE71146006E69C3 /* MealTableViewController.swift */,
+			);
+			name = mealTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

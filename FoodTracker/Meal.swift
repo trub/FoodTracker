@@ -8,7 +8,7 @@
 
 import UIKit
 
-class meal {
+class Meal {
     //MARK: properties
     
     var name: String

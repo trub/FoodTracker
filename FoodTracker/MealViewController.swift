@@ -17,6 +17,9 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     
+    @IBOutlet weak var saveButtonPressed: UIBarButtonItem!
+    
+    
     /*
     This value is either passed by `MealTableViewController` in `prepareForSegue(_:sender:)`
     or constructed as part of adding a new meal.
@@ -29,8 +32,9 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         //handle the text field's user input through delegate callbacks
         nameTextField.delegate = self
-        //the view controller is now a delegate for nameTextField
-
+        
+        //enable the save button only if the text field has a valid meal name
+        checkValidMealNAme()
 
     }
     
@@ -40,14 +44,26 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         //Hide the keyboard
         textField.resignFirstResponder()
         return true
-
     }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        //disable the save button while editing
+        saveButtonPressed.enabled = false
+    }
+    
+    func checkValidMealNAme() {
+        //disable the save button if the text field is empty
+        let text = nameTextField.text ?? ""
+        saveButtonPressed.enabled = !text.isEmpty
+    }
+    
     
     //take the text in the text field and use it to change the value of the label in the UI
     
     func textFieldDidEndEditing(textField: UITextField) {
-//        mealNameLabel.text = textField.text
-        
+
+        checkValidMealNAme()
+        navigationItem.title = textField.text
     }
     
     
@@ -57,6 +73,8 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         //dismiss the picker if user canceled
         dismissViewControllerAnimated(true, completion: nil)
         //this code animates the dismissal of the image picker controller
+        
+        print("image picker called")
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -69,10 +87,35 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         //dismiss the picker
         dismissViewControllerAnimated(true, completion: nil)
         
+        
+        print("assigns image to object")
+        
+    }
+    
+    //MARK: navigation ==================================================================
+    
+    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+        print("cancel create meal")
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if saveButtonPressed === sender {
+            
+            let name = nameTextField.text ?? ""
+            let photo = photoImageView.image
+            let rating = ratingControl.rating
+            
+            //set the meal name to be passed to MealTableViewController after the unwind Segue
+            meal = Meal(name:name, photo: photo, rating:rating)
+            
+        }
+        
+        print("meal saved, prepared for segue to mealTableViewController")
     }
     
     
-    //MARK: actions
+    //MARK: actions ==================================================================
 
     @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
         
@@ -92,6 +135,6 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         presentViewController(imagePickerController, animated: true, completion: nil)
         // creates method to ask ViewController to present the view controller defined by imagePickerController
 
-
+        print("loads photos available")
     }
 }
